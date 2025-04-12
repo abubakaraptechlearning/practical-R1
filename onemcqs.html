@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin-top: 50px;
+            background-color: antiquewhite;
+        }
+
+        .box{
+            background-color: azure;
+            width: 500px;
+            height: 400px;
+            padding-top: 20px;
+            margin: auto;
+            border-radius:20px ;
+        }
+
+        .btn{
+            width: 100%;
+            padding: 10px;
+            margin: 10px , 0;
+            border: none;
+            background-color: beige;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .btn:hover{
+            background-color: bisque;  
+        }
+
+        .correct{
+            background-color:green;
+            color: white;
+        }
+
+        .inCorrect{
+            background-color: red;
+            color: white;
+    
+        }
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    
+
+<div class="box" id="startbox">
+
+<h2>Welcome!</h2>
+<p>Name: Abubakar Siddiq</p>
+<p>Father Name: Dr Muhammad Shoaib</p>
+<p>Student ID: 1586462</p>
+<button id="startBtn" class="btn">Start Exam</button>
+
+</div>
+
+
+<div class="box" id="quizBox" style="display:none;">
+
+<h3>What is HTML?</h3>
+<button class="btn" onclick="checkAnswer(this, false)">HomeTool Markup Language</button>
+<button class="btn" onclick="checkAnswer(this, false)">HyperLink Markup Language</button>
+<button class="btn" onclick="checkAnswer(this, true)">HyperText Markup Language</button>
+<button class="btn" onclick="checkAnswer(this, false)">Hypercheck Markup Language</button>
+
+</div>
+
+
+    <script>
+        let tries = 3;
+        let answered = false;
+    
+        document.getElementById("startBtn").onclick = () => {
+            document.getElementById("startbox").style.display = "none";
+            document.getElementById("quizBox").style.display = "block";
+        };
+    
+        const checkAnswer = (button, isCorrect) => {
+            if (answered || tries === 0) return;
+    
+            if (isCorrect) {
+                button.classList.add("correct");
+                answered = true;
+                disableAll();
+            } else {
+                button.classList.add("inCorrect");
+                tries--;
+                if (tries === 0) {
+                    disableAll();
+                }
+            }
+        };
+    
+        const disableAll = () => {
+            document.querySelectorAll("#quizBox .btn").forEach(btn => btn.disabled = true);
+        };
+    </script>
+    
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>
